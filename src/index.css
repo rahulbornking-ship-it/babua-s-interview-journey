@@ -120,7 +120,7 @@
 
 @layer components {
   .container-babua {
-    @apply max-w-[1280px] mx-auto px-8 lg:px-12;
+    @apply max-w-[480px] mx-auto px-5 lg:max-w-[1280px] lg:px-12;
   }
 
   .card-babua {
@@ -142,7 +142,7 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-foreground/20 text-foreground font-semibold rounded-full transition-all duration-300 hover:border-primary hover:bg-primary/10 hover:scale-105;
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-card border border-border text-foreground font-semibold rounded-full transition-all duration-300 hover:bg-muted hover:scale-105;
   }
 
   .section-title {
@@ -160,6 +160,18 @@
   .dotted-pattern {
     background-image: radial-gradient(circle, hsl(var(--babua-green) / 0.15) 1.5px, transparent 1.5px);
     background-size: 24px 24px;
+  }
+
+  .shadow-glow-blue {
+    box-shadow: var(--shadow-glow-blue);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
   }
 }
 

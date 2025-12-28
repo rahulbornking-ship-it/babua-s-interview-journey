@@ -3,29 +3,29 @@ import gsap from "gsap";
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Text animation
-      gsap.fromTo(
-        textRef.current,
-        { opacity: 0, x: -40 },
-        { opacity: 1, x: 0, duration: 0.8, ease: "power3.out", delay: 0.2 }
-      );
-
       // Card animation
       gsap.fromTo(
         cardRef.current,
-        { opacity: 0, x: 40, scale: 0.95 },
-        { opacity: 1, x: 0, scale: 1, duration: 0.8, ease: "power3.out", delay: 0.4 }
+        { opacity: 0, y: 30, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power3.out", delay: 0.2 }
+      );
+
+      // Text animation
+      gsap.fromTo(
+        textRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", delay: 0.4 }
       );
 
       // Floating animation for card
       gsap.to(cardRef.current, {
-        y: -12,
-        duration: 2,
+        y: -8,
+        duration: 2.5,
         ease: "power1.inOut",
         yoyo: true,
         repeat: -1,
@@ -38,130 +38,106 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen pt-32 pb-20 overflow-hidden"
+      className="min-h-screen pt-20 pb-12 overflow-hidden"
       style={{
-        background: "linear-gradient(180deg, hsl(40 100% 97%) 0%, hsl(45 100% 95%) 100%)",
+        background: "linear-gradient(180deg, hsl(200 85% 92%) 0%, hsl(45 100% 96%) 60%, hsl(40 100% 97%) 100%)",
       }}
     >
       <div className="container-babua">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left Column - Text */}
-          <div ref={textRef} className="space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-5xl lg:text-6xl xl:text-7xl font-extrabold text-foreground leading-tight">
-                Babua{" "}
-                <span className="text-secondary relative">
-                  LMS
-                  <svg
-                    className="absolute -bottom-2 left-0 w-full"
-                    viewBox="0 0 120 8"
-                    fill="none"
-                  >
-                    <path
-                      d="M2 6C30 2 90 2 118 6"
-                      stroke="hsl(142 71% 45%)"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </span>
-              </h1>
-              <p className="text-xl lg:text-2xl text-secondary font-semibold">
-                Desi way to crack tech interviews 🎯
-              </p>
-              <p className="text-lg text-muted-foreground max-w-md">
-                Join thousands of students on their journey from chai breaks to FAANG placements!
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-4">
-              <button className="btn-primary">
-                Start Learning <span className="text-lg">🚀</span>
-              </button>
-              <button className="btn-secondary">
-                Explore Courses <span className="text-lg">🧭</span>
-              </button>
-            </div>
-
-            {/* Trust badges */}
-            <div className="flex items-center gap-6 pt-4">
-              <div className="flex -space-x-3">
-                {["👨‍💻", "👩‍💻", "🧑‍💻", "👨‍🎓"].map((emoji, i) => (
-                  <div
-                    key={i}
-                    className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center border-2 border-card text-lg"
-                  >
-                    {emoji}
-                  </div>
-                ))}
-              </div>
-              <p className="text-sm text-muted-foreground">
-                <span className="font-bold text-foreground">10,000+</span> students already learning
-              </p>
-            </div>
-          </div>
-
-          {/* Right Column - Illustration Card */}
-          <div ref={cardRef} className="relative">
+        <div className="flex flex-col items-center max-w-md mx-auto lg:max-w-lg">
+          {/* Illustration Card */}
+          <div ref={cardRef} className="relative w-full mb-8">
             <div
-              className="relative bg-card rounded-3xl p-8 shadow-card overflow-hidden"
+              className="relative rounded-3xl overflow-hidden"
               style={{
-                background: "linear-gradient(180deg, hsl(200 90% 92%) 0%, hsl(200 80% 97%) 100%)",
+                background: "linear-gradient(180deg, hsl(200 85% 88%) 0%, hsl(200 80% 92%) 100%)",
               }}
             >
               {/* Clouds */}
-              <div className="absolute top-4 left-8 w-16 h-8 bg-card/80 rounded-full blur-sm" />
-              <div className="absolute top-8 right-12 w-12 h-6 bg-card/80 rounded-full blur-sm" />
-              <div className="absolute top-6 left-1/3 w-10 h-5 bg-card/70 rounded-full blur-sm" />
+              <div className="absolute top-4 left-6 w-12 h-6 bg-card/80 rounded-full blur-[2px]" />
+              <div className="absolute top-6 right-8 w-10 h-5 bg-card/80 rounded-full blur-[2px]" />
+              <div className="absolute top-3 left-1/3 w-8 h-4 bg-card/70 rounded-full blur-[2px]" />
 
-              {/* Auto Rickshaw Illustration */}
-              <div className="relative z-10 flex flex-col items-center py-8">
-                {/* Speech Bubble */}
-                <div className="relative mb-6">
-                  <div className="bg-card rounded-2xl px-6 py-4 shadow-soft relative">
-                    <p className="text-lg font-semibold text-foreground text-center">
-                      "Babua, interview crack karna chahte ho?" 🎯
-                    </p>
-                    {/* Bubble tail */}
-                    <div
-                      className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-card"
-                      style={{ clipPath: "polygon(50% 100%, 0 0, 100% 0)" }}
-                    />
-                  </div>
-                  {/* Mentor avatar */}
-                  <div className="absolute -right-4 -top-4 w-14 h-14 rounded-full bg-primary flex items-center justify-center shadow-glow-yellow text-2xl border-4 border-card">
-                    🧑‍🏫
-                  </div>
-                </div>
-
-                {/* Auto Rickshaw */}
-                <div className="relative">
+              {/* Speech Bubble */}
+              <div className="relative z-10 pt-6 px-6">
+                <div className="bg-card rounded-2xl px-4 py-3 shadow-soft inline-block relative mx-auto">
+                  <p className="text-sm font-semibold text-foreground">
+                    Babua, interview crack karna chahte ho?
+                  </p>
+                  {/* Bubble tail */}
                   <div
-                    className="w-64 h-40 rounded-2xl flex items-end justify-center pb-4"
-                    style={{
-                      background: "linear-gradient(135deg, hsl(42 100% 50%) 0%, hsl(85 70% 50%) 100%)",
-                    }}
-                  >
-                    {/* Rickshaw body */}
-                    <div className="relative">
-                      <div className="text-6xl">🛺</div>
-                      {/* Road marks */}
-                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-foreground/20 rounded-full" />
-                    </div>
-                  </div>
-                  {/* Decorative elements */}
-                  <div className="absolute -left-4 top-1/2 text-2xl animate-pulse">✨</div>
-                  <div className="absolute -right-4 top-1/3 text-2xl animate-pulse" style={{ animationDelay: "0.5s" }}>⭐</div>
+                    className="absolute -bottom-2 left-8 w-4 h-4 bg-card"
+                    style={{ clipPath: "polygon(50% 100%, 0 0, 100% 0)" }}
+                  />
+                </div>
+                {/* Mentor avatar */}
+                <div className="absolute right-8 top-4 w-10 h-10 rounded-full bg-muted flex items-center justify-center text-lg border-2 border-card overflow-hidden">
+                  <span>👨‍🏫</span>
                 </div>
               </div>
 
-              {/* Ground */}
-              <div className="absolute bottom-0 left-0 right-0 h-16 bg-babua-green-light/50 rounded-b-3xl" />
+              {/* Auto Rickshaw */}
+              <div className="relative z-10 flex justify-center pb-4 pt-2">
+                <div className="relative">
+                  {/* Rickshaw SVG-like representation */}
+                  <div className="relative w-48 h-32 flex items-end justify-center">
+                    {/* Main body - yellow-green rickshaw */}
+                    <div className="relative">
+                      {/* Roof */}
+                      <div 
+                        className="absolute -top-8 left-1/2 -translate-x-1/2 w-24 h-10 rounded-t-full"
+                        style={{ background: "linear-gradient(135deg, hsl(52 95% 55%) 0%, hsl(85 70% 50%) 100%)" }}
+                      />
+                      {/* Body */}
+                      <div 
+                        className="relative w-28 h-16 rounded-lg flex items-center justify-center"
+                        style={{ background: "linear-gradient(135deg, hsl(52 95% 55%) 0%, hsl(85 70% 50%) 100%)" }}
+                      >
+                        {/* Window - front */}
+                        <div className="absolute top-1 left-2 w-6 h-6 bg-foreground/80 rounded-sm" />
+                        {/* Passenger area */}
+                        <div className="absolute top-1 right-2 w-14 h-8 bg-foreground/20 rounded-sm flex items-center justify-center gap-1">
+                          <span className="text-xs">👨</span>
+                          <span className="text-xs">👩</span>
+                        </div>
+                      </div>
+                      {/* Wheels */}
+                      <div className="absolute -bottom-3 left-2 w-5 h-5 bg-foreground rounded-full border-2 border-muted" />
+                      <div className="absolute -bottom-3 right-2 w-5 h-5 bg-foreground rounded-full border-2 border-muted" />
+                      <div className="absolute -bottom-3 right-8 w-5 h-5 bg-foreground rounded-full border-2 border-muted" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Ground/Road */}
+              <div 
+                className="h-4"
+                style={{ background: "linear-gradient(180deg, hsl(142 50% 75%) 0%, hsl(142 60% 65%) 100%)" }}
+              />
+            </div>
+          </div>
+
+          {/* Text Content */}
+          <div ref={textRef} className="text-center space-y-6 w-full">
+            <div className="space-y-2">
+              <h1 className="text-3xl lg:text-4xl font-extrabold text-foreground">
+                Babua LMS
+              </h1>
+              <p className="text-lg text-secondary font-medium">
+                Desi way to crack tech interviews
+              </p>
             </div>
 
-            {/* Floating decorative elements */}
-            <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-primary/30 animate-pulse" />
-            <div className="absolute -bottom-4 -right-4 w-12 h-12 rounded-full bg-secondary/20 animate-pulse" style={{ animationDelay: "1s" }} />
+            {/* CTA Buttons */}
+            <div className="flex flex-col gap-3 w-full max-w-xs mx-auto">
+              <button className="btn-primary w-full justify-center">
+                Start Learning <span className="text-lg">🚀</span>
+              </button>
+              <button className="btn-secondary w-full justify-center">
+                Explore Courses <span className="text-lg">🗺️</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
